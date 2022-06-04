@@ -4,6 +4,7 @@ import config
 import random
 import matplotlib
 import cssutils
+from termcolor import cprint
 
 player_stats = []
 
@@ -23,43 +24,108 @@ def initialiseGame(cfg):
     return
 
 
+def playerGoToJail(player):
+    # Player in jail
+    # When a player goes to jail:
+    # goes straight to jail (rather than passing over spaces)
+    # Has three turns to get out (must roll doubles)
+    # If hasnt rolled doubles in 3 turns they must pay M50
+    player["in_jail"] = True
+    player["doubles_rolled_streak"] = 0
+    player["turns_left_jail"] = 3
+    player["current_position"] = 10.5
+    print("IN JAIL", player["player"])
+    return player
+
+
 def rollDice():
     # Return rolls and if player rolled double
     dice1 = random.randint(1, 6)
     dice2 = random.randint(1, 6)
-    print("rollDice returns ", (dice1 + dice2))
+
     if dice1 == dice2:
-        return (dice1 + dice2), True  # Ignoring '3 doubles = jail' for now
+        print("rollDice returns ", (dice1 + dice2), " Double")
+        return (dice1 + dice2), True
     else:
+        print("rollDice returns ", (dice1 + dice2))
         return (dice1 + dice2), False
 
 
-def logSpaceLandedOn(currentPosition):
+def logSpaceFinishedTurnOn(currentPosition):
     for space in spaces:
         if space["position"] == currentPosition:
             space["landed_on"] += 1
     # print("log ", spaces)
 
 
-def playerMove(player, diceRoll, jail=False):
-    currentPosition = player["current_position"]
-    currentPosition += diceRoll
-    # Board has 40 positions 0-39, if player rolls eg 6 whilst in position 39, their new positon = 45, should be 5
-    if currentPosition >= 40:
-        currentPosition -= 40
-    print("playerMove returns, newPosition:", currentPosition)
-    logSpaceLandedOn(currentPosition)
-    return currentPosition
-
-
 def playerAction(player):
     diceRoll, rolledDoubles = rollDice()
-    newPosition = playerMove(player, diceRoll)
+    if player["in_jail"] == True:
+        # Players in jail, so they either need to roll double or pay to get out.
+        if player["turns_left_jail"] > 0:
+            if rolledDoubles == True:
+                # Can leave jail
+                player["doubles_rolled_streak"] = 1
+                player["in_jail"] = False
+                player["turns_left_jail"] = 0
+                # Change position to change as jail is position is set as 10.5
+                player["current_position"] = 10
+                player["current_position"] += diceRoll
+                logSpaceFinishedTurnOn(player["current_position"])
+                # Rolled a double so entitled to another go
+                playerAction(player)
+                return player
+            else:
+                player["doubles_rolled_streak"] = 0
+                player["turns_left_jail"] -= 1
+                logSpaceFinishedTurnOn(player["current_position"])
+        else:
+            # Player can just leave jail for M50 fee
+            player["balance"] -= 50
+            # Change position to change as jail is position is set as 10.5
+            player["in_jail"] = False
+            player["doubles_rolled_streak"] = 0
+            player["current_position"] = 10
+            player["current_position"] += diceRoll
+            logSpaceFinishedTurnOn(player["current_position"])
+            return player
 
-    player["current_position"] = newPosition
-
-    print("playerAction returns ", player)
-    return player
+    else:
+        # Else player continues as normal, if they roll 3 doubles they go to jail
+        if rolledDoubles == True:
+            player["doubles_rolled_streak"] += 1
+            if player["doubles_rolled_streak"] == 3:
+                # Go to jail and end turn
+                player = playerGoToJail(player)
+                print("Rolled 3 doubles, in jail", player["current_position"])
+                logSpaceFinishedTurnOn(player["current_position"])
+                return player
+            else:
+                player["current_position"] += diceRoll
+                if player["current_position"] == 30:  # Go to jail
+                    player = playerGoToJail(player)
+                    logSpaceFinishedTurnOn(player["current_position"])
+                    return player
+                # Board has 40 positions 0-39, if player rolls eg 6 whilst in position 39, their new positon = 45, should be 5
+                if player["current_position"] >= 40:
+                    player["current_position"] -= 40
+                logSpaceFinishedTurnOn(player["current_position"])
+                # Player entitled to another go
+                playerAction(player)
+                return player
+        else:
+            print("this code was run")
+            player["doubles_rolled_streak"] = 0
+            player["current_position"] += diceRoll
+            if player["current_position"] == 30:  # Go to jail
+                player = playerGoToJail(player)
+                logSpaceFinishedTurnOn(player["current_position"])
+                return player
+            # Board has 40 positions 0-39, if player rolls eg 6 whilst in position 39, their new positon = 45, should be 5
+            if player["current_position"] >= 40:
+                player["current_position"] -= 40
+            logSpaceFinishedTurnOn(player["current_position"])
+            return player
 
 
 def displayHTML(spaces):
@@ -68,6 +134,7 @@ def displayHTML(spaces):
     # Normalise data (0-1)
     list = []
     for space in spaces:
+        # if space["landed_on"] != 0:
         list.append(space["landed_on"])
 
     xmin = min(list)
@@ -100,6 +167,7 @@ def displayHTML(spaces):
             except AttributeError as e:
                 pass
 
+    # Write to new css file for html to read
     with open("style_new.css", "wb") as f:
         f.write(parser.cssText)
 
@@ -109,10 +177,25 @@ def playGame():
     # print(player_stats)
     for turn in range(config.turnsPerPlayer):
         for x in range(config.numberOfPlayers):
-            print(playerAction(player_stats[x]))
+            playerActionReturn = playerAction(player_stats[x])
+            if player_stats[x]["player"] == 0:
+                cprint(player_stats[x], "red")
+            if player_stats[x]["player"] == 1:
+                cprint(player_stats[x], "green")
+            if player_stats[x]["player"] == 2:
+                cprint(player_stats[x], "blue")
+            if player_stats[x]["player"] == 3:
+                cprint(player_stats[x], "yellow")
             # print(x, " moved, turn ", turn, " pos ", pos)
-    print("\n\n Game Complete: ", spaces)
-    print("\n Players Stats: ", player_stats)
+            player_stats[x]["turns"] += 1
+
+    # Game Complete
+    print("\n\n Game Complete:")
+    for space in spaces:
+        print(space)
+    print("\n Players Stats: ")
+    for player in player_stats:
+        print(player)
 
     displayHTML(spaces)
 
