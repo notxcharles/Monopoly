@@ -5,6 +5,7 @@ import random
 import matplotlib
 import cssutils
 from termcolor import cprint
+from bs4 import BeautifulSoup
 
 player_stats = []
 
@@ -130,11 +131,27 @@ def playerAction(player):
 
 def displayHTML(spaces):
     # Get the stats of what percentage of turns resulted on landing on x space
+    completeSpaces = spaces
 
+    for cs in completeSpaces:
+        landed_on = cs["landed_on"]
+        total_turns = config.turnsPerPlayer * config.numberOfPlayers
+        cs["landed_on_chance_fraction"] = str(int(landed_on)) + "/" + str(total_turns)
+        cs["landed_on_percentage"] = round(landed_on / total_turns * 100, 3)
+    print("cs: ", completeSpaces)
     # Normalise data (0-1)
     list = []
+
+    if not config.displayJail:
+        spaces = [i for i in spaces if not (i["name"] == "Jail")]
+    if not config.displayGoToJail:
+        spaces = [i for i in spaces if not (i["name"] == "Go To Jail")]
+    if not config.displayChance:
+        spaces = [i for i in spaces if not (i["name"] == "Chance")]
+    if not config.displayCommunityChest:
+        spaces = [i for i in spaces if not (i["name"] == "Community Chest")]
+
     for space in spaces:
-        # if space["landed_on"] != 0:
         list.append(space["landed_on"])
 
     xmin = min(list)
@@ -145,8 +162,10 @@ def displayHTML(spaces):
         list[i] = (x - xmin) / (xmax - xmin)
 
     # Find corresponding cmap color for normalised value
-    cmap = matplotlib.cm.get_cmap("OrRd")
-    print("normalized data: ", list)
+    # cmap = matplotlib.cm.get_cmap("cividis_r")
+    cmap = matplotlib.cm.get_cmap("summer_r")
+    print("normalized data: ", list, " ", len(list))
+    print("spaces ", len(spaces))
     for id, space in enumerate(spaces):
         rgba = cmap(list[id])
         hexcolor = matplotlib.colors.rgb2hex(rgba)
@@ -171,6 +190,35 @@ def displayHTML(spaces):
     with open("style_new.css", "wb") as f:
         f.write(parser.cssText)
 
+    # Alter HTML to show percentage stats on mouseover
+
+    with open("monopoly2.html", "r") as file:
+        soup = BeautifulSoup(file, "html.parser")
+        for space in completeSpaces:
+            id = "position" + str(space["position"])
+
+            if "." in id:
+                id = id.replace(".", "")
+
+            div = soup.find("div", {"id": id})
+            if div != None:
+                for s in completeSpaces:
+                    if s["position"] == space["position"]:
+                        title_name = s["name"]
+                        title_percent = str(s["landed_on_percentage"])
+                        title_fraction = s["landed_on_chance_fraction"]
+                        title = (
+                            title_name
+                            + "\nPercentage: "
+                            + title_percent
+                            + "%\nFraction: "
+                            + title_fraction
+                        )
+                        div["title"] = title
+
+    with open("monopoly2.html", "wb") as f_output:
+        f_output.write(soup.prettify("utf-8"))
+
 
 def playGame():
     initialiseGame(config)
@@ -180,12 +228,14 @@ def playGame():
             playerActionReturn = playerAction(player_stats[x])
             if player_stats[x]["player"] == 0:
                 cprint(player_stats[x], "red")
-            if player_stats[x]["player"] == 1:
+            elif player_stats[x]["player"] == 1:
                 cprint(player_stats[x], "green")
-            if player_stats[x]["player"] == 2:
+            elif player_stats[x]["player"] == 2:
                 cprint(player_stats[x], "blue")
-            if player_stats[x]["player"] == 3:
+            elif player_stats[x]["player"] == 3:
                 cprint(player_stats[x], "yellow")
+            else:
+                print(player_stats[x])
             # print(x, " moved, turn ", turn, " pos ", pos)
             player_stats[x]["turns"] += 1
 
