@@ -16,5 +16,5 @@ community_chests = [
     #     "name": "You are assessed for street repairs. £40 per house. £115 per hotel"
     # },
     {"name": "You have won second prize in a beauty contest. Collect £10"},
-    {"name": "You inherit 100"},
+    {"name": "You inherit £100"},
 ]

@@ -1,186 +1,441 @@
 <head>
-    <meta charset=utf-8 />
-    <title>Monopoly</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="style_new.css" />
+     <meta charset="utf-8" />
+     <title>
+          Monopoly
+     </title>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" rel="stylesheet" />
+     <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+     <link href="stats.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-
-    <div class="responsive">
-
-        <div class="mainSquare">
-
-            <div class="row top">
-                <div class="square2" id="position20"><span class="corner corner1">Free<br />Parking</span></div>
-                <div class="square1" id="position21">
-                    <div class="header header-top red"></div>
-                    <div class="firstLine firstLine-top rotation2">Strand</div>
-                </div>
-                <div class="square1" id="position22">
-                    <div class="firstLine firstLine-top no-color rotation2">Chance</div>
-                </div>
-                <div class="square1" id="position23">
-                    <div class="header header-top red"></div>
-                    <div class="firstLine firstLine-top rotation2">Fleet<br />Street</div>
-                </div>
-                <div class="square1" id="position24">
-                    <div class="header header-top red"></div>
-                    <div class="firstLine firstLine-top rotation2">Trafalgar<br />Square</div>
-                </div>
-                <div class="square1" id="position25">
-                    <div class="firstLine firstLine-top no-color rotation2">Fenchurch St.<br />Station</div>
-                </div>
-                <div class="square1" id="position26">
-                    <div class="header header-top yellow"></div>
-                    <div class="firstLine firstLine-top rotation2">Leicester<br />Square</div>
-                </div>
-                <div class="square1" id="position27">
-                    <div class="header header-top yellow"></div>
-                    <div class="firstLine firstLine-top rotation2">Coventry<br />Street</div>
-                </div>
-                <div class="square1" id="position28">
-                    <div class="firstLine firstLine-top no-color rotation2">Water<br />Works</div>
-                </div>
-                <div class="square1" id="position29">
-                    <div class="header header-top yellow"></div>
-                    <div class="firstLine firstLine-top rotation2">Piccadilly</div>
-                </div>
-                <div class="square2" id="position30"><span class="corner corner2">Go To<br />Jail</span></div>
-            </div>
-
-            <div class="row center">
-                <div class="square2">
-                    <div class="squareSide" id="position19">
-                        <div class="headerSide header-left orange"></div>
-                        <div class="firstLine firstLine-left rotation1">Vine<br />Street</div>
+     <div class="responsive">
+          <div class="mainSquare">
+               <div class="row top">
+                    <div class="square2" id="position20" title="Free Parking
+Percentage: 2.5%
+Fraction: 25/1000">
+                         <span class="corner corner1">
+                              Free
+                              <br />
+                              Parking
+                         </span>
                     </div>
-                    <div class="squareSide" id="position18">
-                        <div class="headerSide header-left orange"></div>
-                        <div class="firstLine firstLine-left rotation1">Marlborough<br />Street</div>
+                    <div class="square1" id="position21" title="Strand
+Percentage: 3.3%
+Fraction: 33/1000">
+                         <div class="header header-top red">
+                         </div>
+                         <div class="firstLine firstLine-top rotation2">
+                              Strand
+                         </div>
                     </div>
-                    <div class="squareSide" id="position17">
-                        <div class="firstLine firstLine-left no-color rotation1">Community<br />Chest</div>
+                    <div class="square1" id="position22" title="Chance
+Percentage: 1.1%
+Fraction: 11/1000">
+                         <div class="firstLine firstLine-top no-color rotation2">
+                              Chance
+                         </div>
                     </div>
-                    <div class="squareSide" id="position16">
-                        <div class="headerSide header-left orange"></div>
-                        <div class="firstLine firstLine-left rotation1">Bow<br />Street</div>
+                    <div class="square1" id="position23" title="Fleet Street
+Percentage: 2.8%
+Fraction: 28/1000">
+                         <div class="header header-top red">
+                         </div>
+                         <div class="firstLine firstLine-top rotation2">
+                              Fleet
+                              <br />
+                              Street
+                         </div>
                     </div>
-                    <div class="squareSide" id="position15">
-                        <div class="firstLine firstLine-left no-color rotation1">Marylebone<br>Street</div>
+                    <div class="square1" id="position24" title="Trafalgar Square
+Percentage: 4.8%
+Fraction: 48/1000">
+                         <div class="header header-top red">
+                         </div>
+                         <div class="firstLine firstLine-top rotation2">
+                              Trafalgar
+                              <br />
+                              Square
+                         </div>
                     </div>
-                    <div class="squareSide" id="position14">
-                        <div class="headerSide header-left purple"></div>
-                        <div class="firstLine firstLine-left rotation1">Northumberland<br />Avenue</div>
+                    <div class="square1" id="position25" title="Fenchurch St. Station
+Percentage: 2.9%
+Fraction: 29/1000">
+                         <div class="firstLine firstLine-top no-color rotation2">
+                              Fenchurch St.
+                              <br />
+                              Station
+                         </div>
                     </div>
-                    <div class="squareSide" id="position13">
-                        <div class="headerSide header-left purple"></div>
-                        <div class="firstLine firstLine-left rotation1">Whitehall</div>
+                    <div class="square1" id="position26" title="Leicester Square
+Percentage: 2.3%
+Fraction: 23/1000">
+                         <div class="header header-top yellow">
+                         </div>
+                         <div class="firstLine firstLine-top rotation2">
+                              Leicester
+                              <br />
+                              Square
+                         </div>
                     </div>
-                    <div class="squareSide" id="position12">
-                        <div class="firstLine firstLine-left no-color rotation1">Electric<br />Company</div>
+                    <div class="square1" id="position27" title="Coventry Street
+Percentage: 3.3%
+Fraction: 33/1000">
+                         <div class="header header-top yellow">
+                         </div>
+                         <div class="firstLine firstLine-top rotation2">
+                              Coventry
+                              <br />
+                              Street
+                         </div>
                     </div>
-                    <div class="squareSide" id="position11">
-                        <div class="headerSide header-left purple"></div>
-                        <div class="firstLine firstLine-left rotation1">Pall<br />Mall</div>
+                    <div class="square1" id="position28" title="Water Works
+Percentage: 3.9%
+Fraction: 39/1000">
+                         <div class="firstLine firstLine-top no-color rotation2">
+                              Water
+                              <br />
+                              Works
+                         </div>
                     </div>
-                </div>
-                <div class="square9">
-                    <div class="card-box card-blue">
-                        <div class="card-blue-inside"></div>
+                    <div class="square1" id="position29" title="Piccadilly
+Percentage: 3.1%
+Fraction: 31/1000">
+                         <div class="header header-top yellow">
+                         </div>
+                         <div class="firstLine firstLine-top rotation2">
+                              Piccadilly
+                         </div>
                     </div>
-                    <div class="logoBox">
-                        <span class="logoName">Monopoly</span>
+                    <div class="square2" id="position30" title="Go To Jail
+Percentage: 0.0%
+Fraction: 0/1000">
+                         <span class="corner corner2">
+                              Go To
+                              <br />
+                              Jail
+                         </span>
                     </div>
-                    <div class="card-box card-orange">
-                        <div class="card-orange-inside"></div>
+               </div>
+               <div class="row center">
+                    <div class="square2">
+                         <div class="squareSide" id="position19" title="Vine Street
+Percentage: 3.4%
+Fraction: 34/1000">
+                              <div class="headerSide header-left orange">
+                              </div>
+                              <div class="firstLine firstLine-left rotation1">
+                                   Vine
+                                   <br />
+                                   Street
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position18" title="Marlborough Street
+Percentage: 3.4%
+Fraction: 34/1000">
+                              <div class="headerSide header-left orange">
+                              </div>
+                              <div class="firstLine firstLine-left rotation1">
+                                   Marlborough
+                                   <br />
+                                   Street
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position17" title="Community Chest
+Percentage: 2.6%
+Fraction: 26/1000">
+                              <div class="firstLine firstLine-left no-color rotation1">
+                                   Community
+                                   <br />
+                                   Chest
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position16" title="Bow Street
+Percentage: 4.1%
+Fraction: 41/1000">
+                              <div class="headerSide header-left orange">
+                              </div>
+                              <div class="firstLine firstLine-left rotation1">
+                                   Bow
+                                   <br />
+                                   Street
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position15" title="Marylebone Station
+Percentage: 2.1%
+Fraction: 21/1000">
+                              <div class="firstLine firstLine-left no-color rotation1">
+                                   Marylebone
+                                   <br />
+                                   Street
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position14" title="Northumberland Avenue
+Percentage: 3.7%
+Fraction: 37/1000">
+                              <div class="headerSide header-left purple">
+                              </div>
+                              <div class="firstLine firstLine-left rotation1">
+                                   Northumberland
+                                   <br />
+                                   Avenue
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position13" title="Whitehall
+Percentage: 2.4%
+Fraction: 24/1000">
+                              <div class="headerSide header-left purple">
+                              </div>
+                              <div class="firstLine firstLine-left rotation1">
+                                   Whitehall
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position12" title="Electric Company
+Percentage: 2.6%
+Fraction: 26/1000">
+                              <div class="firstLine firstLine-left no-color rotation1">
+                                   Electric
+                                   <br />
+                                   Company
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position11" title="Pall Mall
+Percentage: 2.6%
+Fraction: 26/1000">
+                              <div class="headerSide header-left purple">
+                              </div>
+                              <div class="firstLine firstLine-left rotation1">
+                                   Pall
+                                   <br />
+                                   Mall
+                              </div>
+                         </div>
                     </div>
-                </div>
-                <div class="square2">
-                    <div class="squareSide" id="position31">
-                        <div class="headerSide header-right green"></div>
-                        <div class="firstLine firstLine-right rotation3">Regent<br />Street</div>
+                    <div class="square9">
+                         <div class="card-box card-blue">
+                              <div class="card-blue-inside">
+                              </div>
+                         </div>
+                         <div class="logoBox">
+                              <span class="logoName">
+                                   Monopoly
+                              </span>
+                         </div>
+                         <div class="card-box card-orange">
+                              <div class="card-orange-inside">
+                              </div>
+                         </div>
                     </div>
-                    <div class="squareSide" id="position32">
-                        <div class="headerSide header-right green"></div>
-                        <div class="firstLine firstLine-right rotation3">Oxford<br />Street</div>
+                    <div class="square2">
+                         <div class="squareSide" id="position31" title="Regent Street
+Percentage: 2.9%
+Fraction: 29/1000">
+                              <div class="headerSide header-right green">
+                              </div>
+                              <div class="firstLine firstLine-right rotation3">
+                                   Regent
+                                   <br />
+                                   Street
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position32" title="Oxford Street
+Percentage: 3.5%
+Fraction: 35/1000">
+                              <div class="headerSide header-right green">
+                              </div>
+                              <div class="firstLine firstLine-right rotation3">
+                                   Oxford
+                                   <br />
+                                   Street
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position33" title="Community Chest
+Percentage: 2.6%
+Fraction: 26/1000">
+                              <div class="firstLine firstLine-right no-color rotation3">
+                                   Community
+                                   <br />
+                                   Chest
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position34" title="Bond Street
+Percentage: 2.9%
+Fraction: 29/1000">
+                              <div class="headerSide header-right green">
+                              </div>
+                              <div class="firstLine firstLine-right rotation3">
+                                   Bond
+                                   <br />
+                                   Street
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position35" title="Liverpool St. Station
+Percentage: 3.1%
+Fraction: 31/1000">
+                              <div class="firstLine firstLine-right no-color rotation3">
+                                   Liverpool st.
+                                   <br />
+                                   Station
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position36" title="Chance
+Percentage: 1.4%
+Fraction: 14/1000">
+                              <div class="firstLine firstLine-right no-color rotation3">
+                                   Chance
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position37" title="Park Lane
+Percentage: 2.5%
+Fraction: 25/1000">
+                              <div class="headerSide header-right blue">
+                              </div>
+                              <div class="firstLine firstLine-right rotation3">
+                                   Park
+                                   <br />
+                                   Lane
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position38" title="Super Tax
+Percentage: 2.7%
+Fraction: 27/1000">
+                              <div class="firstLine firstLine-right no-color rotation3">
+                                   Super
+                                   <br />
+                                   Tax
+                              </div>
+                         </div>
+                         <div class="squareSide" id="position39" title="Mayfair
+Percentage: 1.5%
+Fraction: 15/1000">
+                              <div class="headerSide header-right blue">
+                              </div>
+                              <div class="firstLine firstLine-right rotation3">
+                                   Mayfair
+                              </div>
+                         </div>
                     </div>
-                    <div class="squareSide" id="position33">
-                        <div class="firstLine firstLine-right no-color rotation3">Community<br />Chest</div>
+               </div>
+               <div class="row top">
+                    <div class="square2" id="position10" title="Just Visiting
+Percentage: 2.9%
+Fraction: 29/1000">
+                         <span class="corner4-left">
+                              Just
+                         </span>
+                         <div class="squareCorner" id="position105" title="Jail
+Percentage: 10.3%
+Fraction: 103/1000">
+                              <span class="corner corner4">
+                                   In
+                                   <br />
+                                   Jail
+                              </span>
+                         </div>
+                         <span class="corner4-bottom">
+                              Visiting
+                         </span>
                     </div>
-                    <div class="squareSide" id="position34">
-                        <div class="headerSide header-right green"></div>
-                        <div class="firstLine firstLine-right rotation3">Bond<br />Street</div>
+                    <div class="square1" id="position9" title="Pentonville Road
+Percentage: 3.2%
+Fraction: 32/1000">
+                         <div class="header header-bottom lightblue">
+                         </div>
+                         <div class="firstLine firstLine-bottom">
+                              Pentonville Road
+                         </div>
                     </div>
-                    <div class="squareSide" id="position35">
-                        <div class="firstLine firstLine-right no-color rotation3">Liverpool st.<br />Station</div>
+                    <div class="square1" id="position8" title="Euston Road
+Percentage: 2.1%
+Fraction: 21/1000">
+                         <div class="header header-bottom lightblue">
+                         </div>
+                         <div class="firstLine firstLine-bottom">
+                              Euston
+                              <br />
+                              Road
+                         </div>
                     </div>
-                    <div class="squareSide" id="position36">
-                        <div class="firstLine firstLine-right no-color rotation3">Chance</div>
+                    <div class="square1" id="position7" title="Chance
+Percentage: 0.6%
+Fraction: 6/1000">
+                         <div class="firstLine firstLine-bottom no-color">
+                              Chance
+                         </div>
                     </div>
-                    <div class="squareSide" id="position37">
-                        <div class="headerSide header-right blue"></div>
-                        <div class="firstLine firstLine-right rotation3">Park<br />Lane</div>
+                    <div class="square1" id="position6" title="The Angel Islington
+Percentage: 2.8%
+Fraction: 28/1000">
+                         <div class="header header-bottom lightblue">
+                         </div>
+                         <div class="firstLine firstLine-bottom">
+                              The Angel
+                              <br />
+                              Islington
+                         </div>
                     </div>
-                    <div class="squareSide" id="position38">
-                        <div class="firstLine firstLine-right no-color rotation3">Super<br />Tax</div>
+                    <div class="square1" id="position5" title="Kings Cross Station
+Percentage: 4.5%
+Fraction: 45/1000">
+                         <div class="firstLine firstLine-bottom no-color">
+                              Kings Cross
+                              <br />
+                              Station
+                         </div>
                     </div>
-                    <div class="squareSide" id="position39">
-                        <div class="headerSide header-right blue"></div>
-                        <div class="firstLine firstLine-right rotation3">Mayfair</div>
+                    <div class="square1" id="position4" title="Income Tax
+Percentage: 2.1%
+Fraction: 21/1000">
+                         <div class="firstLine firstLine-bottom no-color">
+                              Income
+                              <br />
+                              Tax
+                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row top">
-                <div class="square2" id="position10">
-                    <span class="corner4-left">Just</span>
-                    <div class="squareCorner" id="position105">
-                        <span class="corner corner4">In<br />Jail</span>
+                    <div class="square1" id="position3" title="Whitechapel Road
+Percentage: 2.4%
+Fraction: 24/1000">
+                         <div class="header header-bottom brown">
+                         </div>
+                         <div class="firstLine firstLine-bottom">
+                              Whitechapel
+                              <br />
+                              Road
+                         </div>
                     </div>
-                    <span class="corner4-bottom">Visiting</span>
-                </div>
-                <div class="square1" id="position9">
-                    <div class="header header-bottom lightblue"></div>
-                    <div class="firstLine firstLine-bottom">Pentonville Road</div>
-                </div>
-                <div class="square1" id="position8">
-                    <div class="header header-bottom lightblue"></div>
-                    <div class="firstLine firstLine-bottom">Euston<br />Road</div>
-                </div>
-                <div class="square1" id="position7">
-                    <div class="firstLine firstLine-bottom no-color">Chance</div>
-                </div>
-                <div class="square1" id="position6">
-                    <div class="header header-bottom lightblue"></div>
-                    <div class="firstLine firstLine-bottom">The Angel<br />Islington</div>
-                </div>
-                <div class="square1" id="position5">
-                    <div class="firstLine firstLine-bottom no-color">Kings Cross<br />Station</div>
-                </div>
-                <div class="square1" id="position4">
-                    <div class="firstLine firstLine-bottom no-color">Income<br />Tax</div>
-                </div>
-                <div class="square1" id="position3">
-                    <div class="header header-bottom brown"></div>
-                    <div class="firstLine firstLine-bottom">Whitechapel<br />Road</div>
-                </div>
-                <div class="square1" id="position2">
-                    <div class="firstLine firstLine-bottom no-color">Community<br />Chest</div>
-                </div>
-                <div class="square1" id="position1">
-                    <div class="header header-bottom brown"></div>
-                    <div class="firstLine firstLine-bottom">Old Kent<br />Road</div>
-                </div>
-                <div class="square2" id="position0">
-                    <span class="corner corner3">Collect<br />M200 Salary<br />As You Pass Go</span>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
+                    <div class="square1" id="position2" title="Community Chest
+Percentage: 2.2%
+Fraction: 22/1000">
+                         <div class="firstLine firstLine-bottom no-color">
+                              Community
+                              <br />
+                              Chest
+                         </div>
+                    </div>
+                    <div class="square1" id="position1" title="Old Kent Road
+Percentage: 2.7%
+Fraction: 27/1000">
+                         <div class="header header-bottom brown">
+                         </div>
+                         <div class="firstLine firstLine-bottom">
+                              Old Kent
+                              <br />
+                              Road
+                         </div>
+                    </div>
+                    <div class="square2" id="position0" title="Go
+Percentage: 3.3%
+Fraction: 33/1000">
+                         <span class="corner corner3">
+                              Collect
+                              <br />
+                              M200 Salary
+                              <br />
+                              As You Pass Go
+                         </span>
+                    </div>
+               </div>
+          </div>
+     </div>
 </body>
