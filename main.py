@@ -1,3 +1,6 @@
+import time
+
+start_time = time.time()
 from board_info.spaces import spaces
 from board_info.properties import properties
 from board_info.chance_cards import chance_cards
@@ -517,3 +520,6 @@ def playGame():
 
 
 playGame()
+
+end_time = time.time()
+print("Execution time:", end_time - start_time)
