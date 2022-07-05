@@ -1,5 +1,6 @@
 # Monopoly
 Monopoly simulator to find spaces commonly landed on
+Frequently updated as I learn more about python
 
 ## Requirements
 pandas | python3 -m pip install pandas | https://pandas.pydata.org/docs/
