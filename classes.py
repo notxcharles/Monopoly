@@ -1,3 +1,6 @@
+import random
+
+
 class Player:
     """
     Class used to represent a player
@@ -20,7 +23,8 @@ class Player:
         number of turns left for the player before he is released from jail
     get_out_of_jail_free_cards : int
         number of get out of jail free cards in the player's possession
-
+    positions_landed_on : list
+        list of ints for positions the player has landed on
     Methods
     -------
 
@@ -30,6 +34,7 @@ class Player:
     in_jail = False
     turns_left_in_jail = 0
     get_out_of_jail_free_cards = 0
+    positions_landed_on = []
 
     def __init__(self, player_number, current_position=0, starting_balance=1500):
         """
@@ -56,6 +61,26 @@ class Player:
         self.in_jail = False
         self.turns_left_in_jail = 0
         self.current_position = 10
+
+    def passedGo(self):
+        self.current_position -= 40
+        self.balance += 200
+
+    def rollDice(self):
+        dice1 = random.randint(1, 6)
+        dice2 = random.randint(1, 6)
+        roll = dice1 + dice2
+        double = dice1 == dice2
+
+        if self.in_jail == True:
+
+            if self.turns_left_in_jail > 0:
+
+                if double:
+                    self.doubles_rolled_streak += 1
+                    self.leaveJail()
+                    self.current_position += roll
+                    self.positions_landed_on.append(self.current_position)
 
 
 class ChanceCard:
